@@ -2,10 +2,10 @@
 
 Repositório para armazenar os conhecimentos adquiridos no Bootcamp Code Girls da [DIO](https://www.dio.me/en) em Gerenciamento de Instâncias EC2 na AWS.
 
-### 📚 Documentação
+## 📚 Documentação
 - [Gerenciando Instâncias EC2](https://docs.aws.amazon.com/pt_br/toolkit-for-visual-studio/latest/user-guide/tkv-ec2-ami.html)
 
-### 💻 Resumos das Aulas 
+## 💻 Resumos das Aulas 
 
 ### Entendendo as Instâncias EC2 e a Otimização de Recursos na AWS
 
