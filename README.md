@@ -1,6 +1,6 @@
 # Desafio - Instâncias EC2
 
-Repositório para armazenar os conhecimentos adquiridos em Gerenciamento de Instâncias EC2 na AWS, por meio do Bootcamp Code Girls 2025 da [DIO](https://www.dio.me/en) 
+Repositório para armazenar os conhecimentos adquiridos em Gerenciamento de Instâncias EC2 na AWS, no Bootcamp Code Girls 2025 da [DIO](https://www.dio.me/en) 
 
 ## 📚 Documentação
 - [Gerenciando Instâncias EC2](https://docs.aws.amazon.com/pt_br/toolkit-for-visual-studio/latest/user-guide/tkv-ec2-ami.html)
