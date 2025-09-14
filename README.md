@@ -1,1 +1,5 @@
-# desafioec2
+EC2
+Lambda
+S3
+EBS
+
