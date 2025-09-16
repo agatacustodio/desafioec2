@@ -1,6 +1,6 @@
 # Desafio - Instâncias EC2
 
-Repositório para armazenar os conhecimentos adquiridos no Bootcamp Code Girls da [DIO](https://www.dio.me/en) em Gerenciamento de Instâncias EC2 na AWS.
+Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os conhecimentos adquiridos no Bootcamp Code Girls da [DIO](https://www.dio.me/en).
 
 ## 📚 Documentação
 - [Gerenciando Instâncias EC2](https://docs.aws.amazon.com/pt_br/toolkit-for-visual-studio/latest/user-guide/tkv-ec2-ami.html)
@@ -11,7 +11,7 @@ Repositório para armazenar os conhecimentos adquiridos no Bootcamp Code Girls d
 
 #### **Elastic Compute Cloud (EC2)**
 
-São as máquinas virtuais na AWS. As instâncias são agrupadas em famílias, com base nos diferentes recursos de computação, como memória e armazenamento.
+São as máquinas virtuais na AWS. As instâncias são agrupadas em famílias, com base nos diferentes recursos de computação, como memória, CPU, rede e armazenamento.
 
 - **Tipos de locação:** instâncias compartilhadas, instâncias dedicadas e hosts dedicados.
 
