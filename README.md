@@ -106,3 +106,32 @@ Escolhe-se uma AMI com base nos requisitos da aplicação e do sistema operacion
 📸 **AMI vs Snapshot**
 
 Uma imagem (AMI) faz o backup de um servidor inteiro, incluindo todos os volumes EBS anexados. Já um snapshot é uma cópia pontual de um determinado volume.
+
+
+### Relacionando os Conceitos em um Diagrama
+
+📖 **História da Arquitetura**
+
+**O Usuário**
+
+Imagine que uma pessoa está acessando um site ou aplicativo pelo navegador ou celular. Esse usuário é o ponto inicial da arquitetura.
+
+**A Aplicação Web (Front-end)**
+
+O usuário interage com a aplicação web. Essa interface envia requisições para o EC2, que está dentro da nuvem da AWS.
+
+**EC2 (Processamento/Backend)**
+
+O servidor EC2 é o coração da aplicação. Ele recebe as requisições, processa as informações (por exemplo, cadastro de usuários, upload de arquivos, geração de relatórios) e decide o que fazer com os dados.
+
+**S3 (Armazenamento de Objetos)**
+
+Quando o usuário envia arquivos (imagens, documentos, vídeos etc.), o EC2 armazena esses dados no Amazon S3. O S3 garante alta escalabilidade, disponibilidade e durabilidade.
+
+**Glacier (Arquivamento de Longo Prazo)**
+
+Com o tempo, alguns arquivos deixam de ser acessados com frequência. Para economizar custos, a aplicação transfere esses arquivos automaticamente do S3 para o Glacier, usando regras de Lifecycle Policies. Assim, dados antigos ficam arquivados, mas ainda podem ser recuperados quando necessário.
+
+<p align="center">
+  <img src="images/Screenshot2025-09-14at18.20.46.png" alt="Arquitetura AWS" width="500"/>
+</p>
