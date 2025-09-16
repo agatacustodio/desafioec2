@@ -11,94 +11,98 @@ Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os co
 
 #### **Elastic Compute Cloud (EC2)**
 
-São as máquinas virtuais na AWS. As instâncias são agrupadas em famílias, com base nos diferentes recursos de computação, como memória, CPU, rede e armazenamento.
+- São as máquinas virtuais da AWS.
+- As instâncias são agrupadas em famílias, com base nos diferentes recursos de computação, como memória, CPU, rede e armazenamento.
 
-- **Tipos de locação:** instâncias compartilhadas, instâncias dedicadas e hosts dedicados.
+**Tipos de locação:**
 
-- **Tipos de carga de trabalho:** uso constante, pico de tráfego diário, pico de tráfego semanal e pico de tráfego mensal.
+- Shared Instances → compartilham hardware com outros clientes.
+- Dedicated Instances → instâncias isoladas em hardware dedicado.
+- Dedicated Hosts → servidor físico dedicado, com controle sobre o hardware.
 
-- **Tipos de Conteiner:** on demand, spot, reserved e convertible reserved.
+**Tipos de carga de trabalho:**
+- Uso constante.
+- Picos de tráfego (diário, semanal ou mensal).
 
-| Categoria | Vantagens | Desvantagens |
-| ------------ | ----------- | ---------------|
-| On demand Instances | Flexibilidade total | Maior custo|
-| Spot Instances| Menor custo | Pode ser interrompida pela AWS |
-|Reserved Instances | Mais acessível | Pouca flexibilidade |
-|Convertible Reserved Instances| Adaptabilidade | Acessível, porém menos do que as RIs  |
+**Tipos de Compra:**
 
-#### **Entendendo o Nome dos Tipos de Instância**
+- On-demand → flexibilidade total, paga apenas pelo uso.
+- Spot → menor custo, mas pode ser interrompida pela AWS.
+- Reserved → preço mais acessível, exige compromisso de longo prazo.
+- Convertible Reserved → permite alterar tipo de instância mantendo parte do desconto.
+
+
+#### **Nomeação das Instâncias**
 
 **Exemplo:** c7gn.xlarge
 
 | Representação | Significado |
 | -- | ----------------|
-| c | Instance family |
-| 7 | Instance generation| 
-| g | Processor family |
-| n | Additional capability |
-| xlarge | Instance size |
+| c | Família da instância |
+| 7 | Geração da instância | 
+| g | Tipo de processador |
+| n | Capacidade adicional |
+| xlarge | Tamanho da instância |
 
 
-### Otimização de Recursos
+#### **Otimização de Recursos**
 
 
 - Desligar instâncias não utilizadas.
-
-- Remover recursos ociosos/não utilizados.
-
-- Escalar recursos verticalmente (acrescentar ou reduzir capacidade de um recurso) ou horizontalmente (aumentar o números de recursos).
+- Remover recursos ociosos.
+- Escalar recursos:
+    -  Verticalmente → aumentar/reduzir capacidade de um recurso.
+    -  Horizontalmente → aumentar/reduzir número de recursos.
 
 
 ### Armazenamento na Nuvem com Amazon EBS e S3
 
 #### **Amazon Elastic Block Store (EBS)**
 
-O EBS permite expandir a capacidade de armazenamento de uma instância, como uma espécie de HD externo.
-
-- **99.999%** de disponibilidade.
+- Funciona como um HD/SSD externo para EC2.
+- Alta disponibilidade (**99,999%**).
+- Permite snapshots (cópias de backup).
 
 #### **Amazon Simple Storage Service (S3)**
 
-É um serviço escalável e de armazenamento de objetos em nuvem. Ideal para armazenar, organizar e recuperar grandes volumes de forma segura e escalável.
-
-- **99.999999999%** de disponibilidade.
-
-- **Classes de Armazenamento:** S3 Standard, S3 Standard IA, S3 One Zone - IA, S3 Glacier.
+- Armazenamento de objetos altamente escalável.
+- Alta durabilidade (**99,999999999%**).
+- Classes de armazenamento:
+    - S3 Standard
+    - S3 Standard-IA (Infrequent Access)
+    - S3 One Zone-IA
+    - S3 Glacier (arquivamento)
 
 *IA = Infrequent Access*
 
 Os objetos não passam automaticamente de uma classe para outra. Essa transição é possível por meio da configuração de uma Lifecycle Rule (Regra de ciclo de vida). Também é possível programar a exclusão do objeto.
 
-Por padrão, os objetos ficam no S3 Standard até serem excluídos ou regras se aplicarem.
-
-**Exemplo:** criar uma regra que define que os objetos serão movidos do S3 Standard para o S3 Standard IA após 90 dias e, após 1 ano, para o S3 Glacier.
+**Exemplo:** mover objetos do S3 Standard para o S3 IA após 90 dias e para o Glacier após 1 ano.
 
 #### **Amazon Machine Image (AMI)**
 
-É uma imagem da máquina virtual pré-configurada que inclui as informações necessárias para iniciar uma instância (sistema operacional, servidor de aplicações e as aplicações).
+É uma imagem da máquina virtual pré-configurada que inclui as informações necessárias para iniciar uma instância (sistema operacional, aplicativos e configurações).
 
 - **Criação e uso de imagens AMI** 
 
-As AMIs podem ser criadas à partir de instâncias em execução ou paradas, o que permite capturar um instântaneo do ambiente configurado.
+As AMIs podem ser criadas a partir de instâncias em execução ou paradas, o que permite capturar um instantâneo do ambiente configurado.
 
-A AWS fornece uma variedade de AMIs públicas, e também é possível criar e usar AMIs privadas. É possível personalizar uma instância e criar um AMI à partir dela.
+A AWS fornece uma variedade de AMIs públicas, e também é possível criar e usar AMIs privadas. É possível personalizar uma instância e criar um AMI a partir dela.
 
-A AMI fornece as informações necessárias para executar instâncias no EC2, como o volume do dispositivo raiz e as permissões de inicialização. Essa base fornevcida permite a criação de ambientes consistentes e reproduzíveis na nuvem.
+✅ Permite criar ambientes consistentes e reproduzíveis.
 
-- **Tipos de AMI**: Amazon Linux, Windows, etc.
+**Tipos de AMI:** Amazon Linux, Windows, Ubuntu, etc.
 
 Escolhe-se uma AMI com base nos requisitos da aplicação e do sistema operacional.
 
 #### **Snapshots EBS**
 
-É um serviço de backup nativo da AWS. O backup dos volumes do EBS é realizado em um determinado momento, e a frequencia dos snapshots ("fotos") é configurável.
+É um serviço de backup incremental de volumes EBS em um ponto no tempo.
 
-Para fins de recuperação de desastres (DR), os instantâneos do EBS podem ser armazenados em uma região remota.
+- A frequência dos snapshots ("fotos") é configurável.
 
-- **Imagem vs Snapshot**
+- Para fins de recuperação de desastres (DR), os instantâneos do EBS podem ser armazenados em uma região remota.
+
+📸 **AMI vs Snapshot**
 
 Uma imagem (AMI) faz o backup de um servidor inteiro, incluindo todos os volumes EBS anexados. Já um snapshot é uma cópia pontual de um determinado volume.
-
-
-## 🔎 Referências
-- [Exemplo](https://docs.aws.amazon.com/pt_br/toolkit-for-visual-studio/latest/user-guide/tkv-ec2-ami.html)
