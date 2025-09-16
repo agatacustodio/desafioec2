@@ -2,8 +2,30 @@
 
 Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os conhecimentos adquiridos no Bootcamp Code Girls da [DIO](https://www.dio.me/en).
 
-## 📚 Documentação
+## 📑 Sumário
+<details>
+  <summary>Clique para expandir</summary>
+
+- [Documentação](#-documentação)
+- [Entendendo as Instâncias EC2 e a Otimização de Recursos na AWS](#entendendo-as-instâncias-ec2-e-a-otimização-de-recursos-na-aws)
+  - [Elastic Compute Cloud (EC2)](#elastic-compute-cloud-ec2)
+  - [Nomeação das Instâncias](#nomeação-das-instâncias)
+  - [Otimização de Recursos](#otimização-de-recursos)
+- [Armazenamento na Nuvem com Amazon EBS e S3](#armazenamento-na-nuvem-com-amazon-ebs-e-s3)
+  - [Amazon Elastic Block Store (EBS)](#amazon-elastic-block-store-ebs)
+  - [Amazon Simple Storage Service (S3)](#amazon-simple-storage-service-s3)
+- [Amazon Machine Image (AMI)](#amazon-machine-image-ami)
+- [Snapshots EBS](#snapshots-ebs)
+- [Relacionando os Conceitos em um Diagrama](#relacionando-os-conceitos-em-um-diagrama)
+
+</details>
+
+- ---
+
+## 📚 Documentação Oficial
 - [Gerenciando Instâncias EC2](https://docs.aws.amazon.com/pt_br/toolkit-for-visual-studio/latest/user-guide/tkv-ec2-ami.html)
+
+- ---
 
 ## 💻 Resumos das Aulas 
 
@@ -14,22 +36,24 @@ Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os co
 - São as máquinas virtuais da AWS.
 - As instâncias são agrupadas em famílias, com base nos diferentes recursos de computação, como memória, CPU, rede e armazenamento.
 
-**Tipos de locação:**
+**1. Tipos de Locação:**
 
 - Shared Instances → compartilham hardware com outros clientes.
 - Dedicated Instances → instâncias isoladas em hardware dedicado.
 - Dedicated Hosts → servidor físico dedicado, com controle sobre o hardware.
 
-**Tipos de carga de trabalho:**
+**2. Tipos de Carga de Trabalho:**
 - Uso constante.
 - Picos de tráfego (diário, semanal ou mensal).
 
-**Tipos de Compra:**
+**3. Tipos de Compra:**
 
 - On-demand → flexibilidade total, paga apenas pelo uso.
 - Spot → menor custo, mas pode ser interrompida pela AWS.
 - Reserved → preço mais acessível, exige compromisso de longo prazo.
 - Convertible Reserved → permite alterar tipo de instância mantendo parte do desconto.
+
+- ---
 
 
 #### **Nomeação das Instâncias**
@@ -44,6 +68,7 @@ Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os co
 | n | Capacidade adicional |
 | xlarge | Tamanho da instância |
 
+---
 
 #### **Otimização de Recursos**
 
@@ -54,6 +79,7 @@ Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os co
     -  Verticalmente → aumentar/reduzir capacidade de um recurso.
     -  Horizontalmente → aumentar/reduzir número de recursos.
 
+---
 
 ### Armazenamento na Nuvem com Amazon EBS e S3
 
@@ -75,9 +101,11 @@ Repositório sobre Gerenciamento de Instâncias EC2 na AWS, para armazenar os co
 
 *IA = Infrequent Access*
 
-Os objetos não passam automaticamente de uma classe para outra. Essa transição é possível por meio da configuração de uma Lifecycle Rule (Regra de ciclo de vida). Também é possível programar a exclusão do objeto.
+📌 Os objetos não passam automaticamente de uma classe para outra. Essa transição é possível por meio da configuração de uma Lifecycle Rule (Regra de ciclo de vida). Também é possível programar a exclusão do objeto.
 
 **Exemplo:** mover objetos do S3 Standard para o S3 IA após 90 dias e para o Glacier após 1 ano.
+
+---
 
 #### **Amazon Machine Image (AMI)**
 
@@ -95,6 +123,8 @@ A AWS fornece uma variedade de AMIs públicas, e também é possível criar e us
 
 Escolhe-se uma AMI com base nos requisitos da aplicação e do sistema operacional.
 
+---
+
 #### **Snapshots EBS**
 
 É um serviço de backup incremental de volumes EBS em um ponto no tempo.
@@ -107,28 +137,29 @@ Escolhe-se uma AMI com base nos requisitos da aplicação e do sistema operacion
 
 Uma imagem (AMI) faz o backup de um servidor inteiro, incluindo todos os volumes EBS anexados. Já um snapshot é uma cópia pontual de um determinado volume.
 
+---
 
 ### Relacionando os Conceitos em um Diagrama
 
 📖 **História da Arquitetura**
 
-**O Usuário**
+**1. O Usuário**
 
 Imagine que uma pessoa está acessando um site ou aplicativo pelo navegador ou celular. Esse usuário é o ponto inicial da arquitetura.
 
-**A Aplicação Web (Front-end)**
+**2. A Aplicação Web (Front-end)**
 
 O usuário interage com a aplicação web. Essa interface envia requisições para o EC2, que está dentro da nuvem da AWS.
 
-**EC2 (Processamento/Backend)**
+**3. EC2 (Processamento/Backend)**
 
 O servidor EC2 é o coração da aplicação. Ele recebe as requisições, processa as informações (por exemplo, cadastro de usuários, upload de arquivos, geração de relatórios) e decide o que fazer com os dados.
 
-**S3 (Armazenamento de Objetos)**
+**4. S3 (Armazenamento de Objetos)**
 
 Quando o usuário envia arquivos (imagens, documentos, vídeos etc.), o EC2 armazena esses dados no Amazon S3. O S3 garante alta escalabilidade, disponibilidade e durabilidade.
 
-**Glacier (Arquivamento de Longo Prazo)**
+**5. Glacier (Arquivamento de Longo Prazo)**
 
 Com o tempo, alguns arquivos deixam de ser acessados com frequência. Para economizar custos, a aplicação transfere esses arquivos automaticamente do S3 para o Glacier, usando regras de Lifecycle Policies. Assim, dados antigos ficam arquivados, mas ainda podem ser recuperados quando necessário.
 
